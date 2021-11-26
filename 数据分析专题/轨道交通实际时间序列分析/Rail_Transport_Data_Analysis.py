@@ -57,7 +57,7 @@ print(train_org['Datetime'])
 print(train.dtypes)
 print(train.head())
 
-# 时间序列数据特征工程
+# #############################  时间序列数据特征工程
 for i in (test, train, test_org, train_org):
     i['Year'] = i.Datetime.dt.year
     i['Month'] = i.Datetime.dt.month
@@ -76,14 +76,59 @@ print(test.head(10))
 # 等等
 
 # 下面判断是否是周末，进行特征衍生的布尔特征转换。首先提取出日期时间的星期几。
+train['day of the week'] = train.Datetime.dt.dayofweek
+# 返回给定日期时间的星期几
+print(train.head())
 
 
+def applyer(row):
+    # 再判断day of the week是否是周末（星期六和星期日），是则返回1 ，否则返回0
+    if row.dayofweek == 5 or row.dayofweek == 6:
+        return 1
+    else:
+        return 0
 
 
+temp = train['Datetime']
+temp2 = train.Datetime.apply(applyer)
+train['weekend'] = temp2
+train.index = train['Datetime']
 
+# 对年月乘客总数统计后可视化，看看总体变化趋势。
+df = train.drop('ID', 1)
+ts = df['Count']
+plt.close()
+plt.plot(ts, label='Passenger count')
 
+# #############################  探索性数据分析
+"""
+年
+对年进行聚合，求所有数据中按年计算的每日平均客流量，从图中可以看出，随着时间的增长，每日平均客流量增长迅速。
+"""
+plt.close()
+train.groupby('Year')['Count'].mean().plot.bar()
 
+"""
+月
+对月份进行聚合，求所有数据中按月计算的每日平均客流量，从图中可以看出，春夏季客流量每月攀升，而秋冬季客流量骤减。
+"""
+train.groupby('Month')['Count'].mean().plot.bar()
 
+"""
+年月
+对年月份进行聚合，求所有数据中按年月计算的每日平均客流量，从图可知道，几本是按照平滑指数上升的趋势。
+"""
+temp = train.groupby(['Year','Month'])['Count'].mean()
+plt.close()
+# 乘客人数(每月)
+temp.plot()
+
+"""
+日
+对日进行聚合，求所有数据中每月中的每日平均客流量。从图中可大致看出，在5、11、24分别出现三个峰值，该峰值代表了上中旬的高峰期。
+"""
+train.groupby('day')['Count'].mean(
+         ).plot.bar(figsize=(15, 5))
 
 
 
