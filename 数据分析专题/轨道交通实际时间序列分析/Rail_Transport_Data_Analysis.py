@@ -5,6 +5,9 @@
 # Description:  轨道交通数据时间序列分析
 # Author:       orange
 # Date:         2021/11/26
+# 参考资料:
+# 时间序列预测的8种常用方法简介
+# https://blog.csdn.net/WHYbeHERE/article/details/109732168
 # -------------------------------------------------------------------------------
 
 import pandas as pd
