@@ -99,6 +99,7 @@ df = train.drop('ID', 1)
 ts = df['Count']
 plt.close()
 plt.plot(ts, label='Passenger count')
+plt.show()
 
 # #############################  探索性数据分析
 """
@@ -107,30 +108,63 @@ plt.plot(ts, label='Passenger count')
 """
 plt.close()
 train.groupby('Year')['Count'].mean().plot.bar()
+plt.show()
 
 """
 月
 对月份进行聚合，求所有数据中按月计算的每日平均客流量，从图中可以看出，春夏季客流量每月攀升，而秋冬季客流量骤减。
 """
+plt.close()
 train.groupby('Month')['Count'].mean().plot.bar()
-
+plt.show()
 """
 年月
 对年月份进行聚合，求所有数据中按年月计算的每日平均客流量，从图可知道，几本是按照平滑指数上升的趋势。
 """
-temp = train.groupby(['Year','Month'])['Count'].mean()
+temp = train.groupby(['Year', 'Month'])['Count'].mean()
 plt.close()
 # 乘客人数(每月)
 temp.plot()
-
+plt.show()
 """
 日
 对日进行聚合，求所有数据中每月中的每日平均客流量。从图中可大致看出，在5、11、24分别出现三个峰值，该峰值代表了上中旬的高峰期。
 """
-train.groupby('day')['Count'].mean(
-         ).plot.bar(figsize=(15, 5))
+plt.close()
+train.groupby('day')['Count'].mean().plot.bar(figsize=(15, 5))
+plt.show()
 
+"""
+小时
+对小时进行聚合，求所有数据中一天内按小时计算的平均客流量，得到了在中(12)晚(19)分别出现两个峰值，该峰值代表了每日的高峰期。
+"""
+plt.close()
+train.groupby('Hour')['Count'].mean().plot.bar()
+plt.show()
 
+"""
+是否周末
+对是否是周末进行聚合，求所有数据中按是否周末计算的平均客流量，发现工作日比周末客流量客流量多近一倍，果然大家都是周末都喜欢宅在家里。
+"""
+plt.close()
+train.groupby('weekend')['Count'].mean().plot.bar()
+plt.show()
+
+"""
+周
+对星期进行聚合统计，求所有数据中按是周计算的平均客流量。
+"""
+plt.close()
+train.groupby('day of the week')['Count'].mean().plot.bar()
+plt.show()
+
+"""
+时间重采样
+◎ 重采样(resampling)指的是将时间序列从一个频率转换到另一个频率的处理过程；
+◎ 将高频率数据聚合到低频率称为降采样(downsampling)；
+◎ 将低频率数据转换到高频率则称为升采样(unsampling)；
+"""
+print(train.head())
 
 
 
