@@ -166,11 +166,30 @@ plt.show()
 """
 print(train.head())
 
+"""
+接下来对训练数据进行对月、周、日及小时多重采样。其实我们分月份进行采样，然后求月内的均值。
+事实上重采样，就相当于groupby，只不过是根据月份这个period进行分组。
+"""
+train = train.drop('ID', 1)
+train.timestamp = pd.to_datetime(train.Datetime, format='%d-%m-%Y %H:%M')
+train.index = train.timestamp
 
+# 重采样后对其进行可视化，直观地看看其变化趋势。
+# 每小时的时间序列
+hourly = train.resample('H').mean()
+# 换算成日平均值
+daily = train.resample('D').mean()
+# 换算成周平均值
+weekly = train.resample('W').mean()
+# 换算成月平均值
+monthly = train.resample('M').mean()
 
+# 对测试数据也进行相同的时间重采样处理。
 
-
-
+# #############################  划分训练集和验证集
+# 到目前为止，我们有训练集和测试集，实际上，我们还需要一个验证集，用来实时验证和调整训练模型。下面直接用索引切片的方式做处理。
+Train = train.loc['2012-08-25':'2014-06-24']
+valid = train['2014-06-25':'2014-09-25']
 
 
 
