@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------------
 # Name:         Rail_Transport_Data_Analysis
-# Description:  轨道交通数据时间序列分析
+# Description:  轨道交通数据时间序列分析（以JetRail高铁的乘客数量为例）
 # Author:       orange
 # Date:         2021/11/26
 # 参考资料:
