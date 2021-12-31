@@ -27,7 +27,7 @@ data.describe().to_csv('DataDescribe.csv')
 # 用随机森林对缺失值预测填充函数
 def set_missing(df):
     # 把已有的数值型特征取出来
-    process_df = df.ix[:,[5,0,1,2,3,4,6,7,8,9]]
+    process_df = df.ix[:, [5, 0, 1, 2, 3, 4, 6, 7, 8, 9]]
     # 分成已知该特征和未知该特征两部分
     known = process_df[process_df.MonthlyIncome.notnull()].as_matrix()
     unknown = process_df[process_df.MonthlyIncome.isnull()].as_matrix()
@@ -50,8 +50,6 @@ data = set_missing(data)        # 用随机森林填补比较多的缺失值
 data = data.dropna()            # 删除比较少的缺失值
 data = data.drop_duplicates()   # 删除重复项
 data.to_csv('MissingData.csv', index=False)
-
-
 
 # 异常值处理
 # 年龄等于0的异常值进行剔除

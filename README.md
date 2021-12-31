@@ -8,5 +8,5 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --ignore-insta
 密码：admin123
 
 
-
+xgboost
 
