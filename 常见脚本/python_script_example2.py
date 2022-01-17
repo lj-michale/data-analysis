@@ -43,25 +43,11 @@ if __name__ == '__main__':
                         help='python传入参数param6')
     # 传入参数解析
     args = parser.parse_args()
-    print(args)
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('--train_data',
-    #                     type=str,
-    #                     default='../data/used_car_train_20200313.csv',
-    #                     help='path to original train data'
-    #                     )
 
-    # parser = argparse.ArgumentParser(description='Process some integers.')
-    # parser.add_argument('integers',
-    #                     metavar='N',
-    #                     type=int,
-    #                     nargs='+',
-    #                     help='an integer for the accumulator')
-    # parser.add_argument('--sum',
-    #                     dest='accumulate',
-    #                     action='store_const',
-    #                     const=sum,
-    #                     default=max,
-    #                     help='sum the integers (default: find the max)')
-    # args = parser.parse_args()
-    # print(args.accumulate(args.integers))
+    # ############# 参数取值
+    print(args.param001)
+    print(args.param002)
+    print(args.param003)
+    print(args.param004)
+    print(args.param005)
+    print(args.param006)
