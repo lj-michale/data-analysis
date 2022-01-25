@@ -28,3 +28,7 @@ if __name__ == '__main__':
             sparkUrl = re.findall('http://cdh001:8088/proxy/application_?\d+_?\d+', line)[0]
     print(sparkUrl)
 
+
+
+
+
