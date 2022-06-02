@@ -3,7 +3,7 @@
 <pre>
 链接：https://pan.baidu.com/s/1Ki7v5wEsN_m2CMPyFw6KNg
 提取码：yhob
-或者本机：F:\datasets\JD\JData
+或者本机：F:\datasets\JD\JData   
 </pre>
 
 ### 数据集表说明
